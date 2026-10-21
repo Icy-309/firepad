@@ -4,7 +4,7 @@ import { Ticker } from "@/components/Ticker";
 import { CountUp } from "@/components/CountUp";
 import { Logo } from "@/components/Logo";
 import { getSolUsd } from "@/lib/server/sol-price";
-import { IconBolt, IconClock, IconGift, IconShield, IconTrend } from "@/components/Icons";
+import { IconBolt, IconClock, IconGift, IconImage, IconShield, IconTrend, IconX_Social } from "@/components/Icons";
 import { getHidden } from "@/lib/server/store";
 import { listLiveTokens } from "@/lib/server/tokens";
 import type { Token } from "@/lib/types";
@@ -116,6 +116,46 @@ export default async function HomePage({ searchParams }: { searchParams: { tab?:
           </div>
         </section>
 
+          <section className="card overflow-hidden p-6 sm:p-8 lg:p-10">
+            <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand">Community marketing</p>
+                <h2 className="mt-3 max-w-md font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+                  Give your launch something to share.
+                </h2>
+                <p className="mt-3 max-w-lg text-sm leading-6 text-muted">
+                  Every coin gets a ready-to-share launch kit, a vertical promo video and community updates built around real milestones.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link href="/how-it-works" className="btn-secondary">
+                    See how it works
+                  </Link>
+                  <Link href="/create" className="btn-primary">
+                    Create a coin <span aria-hidden="true">↗</span>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-3">
+                <MarketingFeature
+                  icon={<IconImage className="h-5 w-5" />}
+                  title="A video for every coin"
+                  body="A 15-second vertical promo made with your coin art and chart, ready for TikTok, Reels and Shorts."
+                />
+                <MarketingFeature
+                  icon={<IconX_Social className="h-5 w-5" />}
+                  title="Posts ready to share"
+                  body="Get an X launch thread and social captions written for your coin and its community."
+                />
+                <MarketingFeature
+                  icon={<IconTrend className="h-5 w-5" />}
+                  title="Milestones worth sharing"
+                  body="The agent can post launch and on-chain milestone updates on FIREPAD, or your connected X account."
+                />
+              </div>
+            </div>
+          </section>
+
           {/* Trending carousel */}
           {trending.length > 0 && <section>
             <div className="mb-3 flex items-center gap-2">
@@ -199,6 +239,18 @@ function Feature({ icon, title, body }: { icon: React.ReactNode; title: string; 
         <div className="text-sm font-semibold">{title}</div>
         <div className="mt-0.5 text-xs leading-relaxed text-muted">{body}</div>
       </div>
+    </div>
+  );
+}
+
+function MarketingFeature({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
+  return (
+    <div className="rounded-2xl border border-line bg-ink/55 p-4 sm:p-5">
+      <div className="mb-4 grid h-10 w-10 place-items-center rounded-xl border border-brand/20 bg-brand/10 text-brand">
+        {icon}
+      </div>
+      <h3 className="text-base font-semibold">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-muted">{body}</p>
     </div>
   );
 }
