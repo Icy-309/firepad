@@ -46,6 +46,11 @@ h5,
 h6 {
   font-family: Inter, Aptos, ui-sans-serif, system-ui, sans-serif;
 }
+button,
+.btn-primary,
+.btn-secondary {
+  font-family: Inter, Aptos, ui-sans-serif, system-ui, sans-serif;
+}
 body {
   background-image: radial-gradient(70% 55% at 50% -20%, rgba(220, 20, 60, 0.07), transparent 70%);
   background-attachment: fixed;
