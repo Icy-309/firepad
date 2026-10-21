@@ -1,0 +1,25 @@
+[package]
+name = "firepad"
+version = "0.1.0"
+description = "Solana launchpad: bonding curve + Token-2022 transfer fee auto-swapped to SOL, split 50/50 creator/holders"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "firepad"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+# Raydium CPMM devnet addresses (program, config, fee receiver) instead of mainnet.
+devnet = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+
+[dependencies]
+anchor-lang = { version = "0.30.1", features = ["init-if-needed"] }
+anchor-spl = { version = "0.30.1", features = ["token", "token_2022", "token_2022_extensions", "associated_token"] }
+spl-token-metadata-interface = "0.3.3"
+spl-token-2022 = { version = "3.0.0", features = ["no-entrypoint"] }

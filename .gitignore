@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+.DS_Store
+*.log
+*.tsbuildinfo
+.env*.local
+next-env.d.ts
+.vercel
+# vanity keypairs + store (contains secret keys)
+data/
+
+# Solana build output (program keypair is backed up in ~/.config/solana/)
+anchor/target
