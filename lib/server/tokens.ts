@@ -38,9 +38,9 @@ function toToken(c: CoinRecord, bc: BondingCurve | undefined): Token {
 
 /** Every coin on FIREPAD, priced from its mainnet pump.fun curve. */
 export async function listLiveTokens(): Promise<Token[]> {
-  await assertMainnetConnection();
   const coins = await listCoins();
   if (!coins.length) return [];
+  await assertMainnetConnection();
   const curves = await fetchCurves(connection, coins.map((c) => new PublicKey(c.mint))).catch((e) => {
     console.error("[tokens] RPC error", e);
     return new Map<string, BondingCurve>();
@@ -49,9 +49,9 @@ export async function listLiveTokens(): Promise<Token[]> {
 }
 
 export async function getLiveToken(mint: string): Promise<Token | null> {
-  await assertMainnetConnection();
   const coin = await getCoin(mint);
   if (!coin) return null;
+  await assertMainnetConnection();
   const curves = await fetchCurves(connection, [new PublicKey(mint)]).catch(() => new Map<string, BondingCurve>());
   return toToken(coin, curves.get(mint));
 }
