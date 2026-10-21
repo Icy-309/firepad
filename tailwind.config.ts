@@ -22,7 +22,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["VT323", "ui-monospace", "monospace"],
-        display: ["VT323", "ui-monospace", "monospace"],
+        display: ["Inter", "Aptos", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ["VT323", "ui-monospace", "monospace"],
         pixel: ["Press Start 2P", "ui-monospace", "monospace"],
       },

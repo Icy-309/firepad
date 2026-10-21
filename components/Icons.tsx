@@ -27,6 +27,11 @@ export const IconSearch = ({ className }: P) => (
     <path d="m20 20-3.5-3.5" />
   </svg>
 );
+export const IconMenu = ({ className }: P) => (
+  <svg {...base(className)}>
+    <path d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+);
 export const IconSun = ({ className }: P) => (
   <svg {...base(className)}>
     <circle cx="12" cy="12" r="4" />

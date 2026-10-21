@@ -6,7 +6,7 @@ import { Suspense, useEffect, useState } from "react";
 import { Wordmark } from "./Logo";
 import { ConnectButton } from "./WalletUI";
 import { ThemeToggle } from "./ThemeToggle";
-import { IconBook, IconHome, IconPlus, IconSearch, IconX_Social } from "./Icons";
+import { IconBook, IconHome, IconMenu, IconPlus, IconSearch, IconX, IconX_Social } from "./Icons";
 
 const LINKS = [
   { href: "/", label: "Home", icon: IconHome },
@@ -78,12 +78,31 @@ export function Sidebar() {
 
 /** Sticky top bar: search + primary actions. */
 export function Topbar() {
+  const path = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [path]);
+
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-ink/85 backdrop-blur">
       <div className="flex h-[72px] items-center gap-3 px-4 lg:px-8">
-        <Link href="/" className="lg:hidden">
-          <Wordmark size={26} />
-        </Link>
+        <div className="flex items-center gap-2 lg:hidden">
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-line bg-panel text-muted transition hover:border-brand/50 hover:text-brand"
+          >
+            {mobileMenuOpen ? <IconX className="h-5 w-5" /> : <IconMenu className="h-5 w-5" />}
+          </button>
+          <Link href="/" aria-label="FIREPAD home">
+            <Wordmark size={26} />
+          </Link>
+        </div>
         <Suspense fallback={<div className="hidden flex-1 md:block" />}>
           <SearchBox />
         </Suspense>
@@ -100,6 +119,36 @@ export function Topbar() {
           <ConnectButton />
         </div>
       </div>
+      {mobileMenuOpen && (
+        <nav
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
+          className="absolute inset-x-0 top-full border-b border-line bg-ink/95 px-4 py-3 shadow-pop backdrop-blur lg:hidden"
+        >
+          <div className="space-y-1">
+            {LINKS.map(({ href, label, icon: Icon }) => (
+              <Link
+                key={href}
+                href={href}
+                className={`flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition ${
+                  isActive(path, href)
+                    ? "bg-panel2 text-brand"
+                    : "text-muted hover:bg-panel hover:text-white"
+                }`}
+              >
+                <Icon className="h-[18px] w-[18px]" />
+                {label}
+              </Link>
+            ))}
+          </div>
+          <div className="mt-3 flex items-center justify-between border-t border-line pt-3">
+            <span className="flex items-center gap-2 px-3 text-xs font-medium text-muted">
+              <span className="live-dot h-1.5 w-1.5 rounded-full bg-up" />
+              Solana mainnet
+            </span>
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
@@ -129,26 +178,5 @@ function SearchBox() {
         />
       </label>
     </form>
-  );
-}
-
-/** Bottom tab bar on phones. */
-export function MobileNav() {
-  const path = usePathname();
-  return (
-    <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-3 border-t border-line bg-ink/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden">
-      {LINKS.map(({ href, label, icon: Icon }) => (
-        <Link
-          key={href}
-          href={href}
-          className={`flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium ${
-            isActive(path, href) ? "text-brand" : "text-muted"
-          }`}
-        >
-          <Icon className={`h-5 w-5 ${href === "/create" ? "text-sol" : ""}`} />
-          {label}
-        </Link>
-      ))}
-    </nav>
   );
 }

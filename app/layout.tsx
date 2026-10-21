@@ -4,7 +4,7 @@ import "@fontsource/vt323/400.css";
 import "@fontsource/press-start-2p/400.css";
 import "./globals.css";
 import { AppWalletProvider } from "@/components/WalletContext";
-import { MobileNav, Sidebar, Topbar } from "@/components/Nav";
+import { Sidebar, Topbar } from "@/components/Nav";
 import { Spotlight } from "@/components/Spotlight";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Sidebar />
             <div className="min-w-0 flex-1">
               <Topbar />
-              <main className="mx-auto max-w-7xl px-4 pb-24 pt-6 lg:px-6 lg:pb-10">{children}</main>
+              <main className="mx-auto max-w-7xl px-4 pb-10 pt-6 lg:px-6">{children}</main>
               <footer className="mx-auto hidden max-w-7xl items-center justify-between border-t border-line px-6 py-6 text-xs text-muted lg:flex">
                 <span>© {new Date().getFullYear()} FIREPAD. Digital assets are risky. Only use what you can afford to lose.</span>
                 <span className="flex gap-5">
@@ -39,7 +39,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </footer>
             </div>
           </div>
-          <MobileNav />
           <Spotlight />
         </AppWalletProvider>
       </body>
