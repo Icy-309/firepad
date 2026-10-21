@@ -156,8 +156,8 @@ function flame(ctx: CanvasRenderingContext2D, x: number, y: number, size: number
       });
     });
   };
-  draw(FLAME_PIXELS, "#c4d99a");
-  draw(CORE_PIXELS, "#d9bd82");
+  draw(FLAME_PIXELS, "#dc143c");
+  draw(CORE_PIXELS, "#ff7189");
   ctx.restore();
 }
 
@@ -191,8 +191,8 @@ function render(
 ) {
   // Background + embers
   const bg = ctx.createLinearGradient(0, 0, 0, H);
-  bg.addColorStop(0, "#17211e");
-  bg.addColorStop(1, "#0b100f");
+  bg.addColorStop(0, "#1b0a0e");
+  bg.addColorStop(1, "#020202");
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, W, H);
   for (let i = 0; i < 40; i++) {
@@ -200,7 +200,7 @@ function render(
     const x = ((seed % 1) + 1) % 1 * W;
     const speed = 60 + ((i * 37) % 80);
     const y = H - ((t * speed + i * 97) % (H + 40));
-    ctx.fillStyle = i % 2 ? "rgba(196,217,154,0.7)" : "rgba(217,189,130,0.6)";
+    ctx.fillStyle = i % 2 ? "rgba(220,20,60,0.7)" : "rgba(255,113,137,0.6)";
     const pixelSize = 4 + (i % 3) * 2;
     ctx.fillRect(x, y, pixelSize, pixelSize);
   }
@@ -212,11 +212,11 @@ function render(
     const k = ease(between(t, 0, 0.8));
     const r = 190 * k;
     ctx.save();
-    ctx.shadowColor = "rgba(217,189,130,0.35)";
+    ctx.shadowColor = "rgba(220,20,60,0.35)";
     ctx.shadowBlur = 60;
     ctx.beginPath();
     ctx.arc(W / 2, 520, r + 10, 0, Math.PI * 2);
-    ctx.fillStyle = "#c4d99a";
+    ctx.fillStyle = "#dc143c";
     ctx.fill();
     ctx.restore();
     ctx.save();

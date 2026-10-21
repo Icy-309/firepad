@@ -2,39 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+:root,
+:root[data-theme="dark"] {
   color-scheme: dark;
+  --color-ink: 2 2 2;
+  --color-panel: 15 15 15;
+  --color-panel2: 25 25 25;
+  --color-line: 52 52 52;
+  --color-brand: 220 20 60;
+  --color-brand2: 164 16 45;
+  --color-sol: 245 79 108;
+  --color-up: 112 190 128;
+  --color-down: 232 91 105;
+  --color-muted: 160 160 168;
+  --color-foreground: 244 244 245;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-ink: 255 255 255;
+  --color-panel: 250 250 250;
+  --color-panel2: 241 241 243;
+  --color-line: 220 220 224;
+  --color-brand: 220 20 60;
+  --color-brand2: 164 16 45;
+  --color-sol: 183 24 58;
+  --color-up: 35 126 68;
+  --color-down: 181 35 48;
+  --color-muted: 82 82 91;
+  --color-foreground: 24 24 27;
 }
 
 html,
 body {
-  background: #0b100f;
-  color: #eef2ec;
+  background: rgb(var(--color-ink));
+  color: rgb(var(--color-foreground));
 }
 body {
-  background-image: radial-gradient(70% 55% at 50% -20%, rgba(196, 217, 154, 0.07), transparent 70%);
+  background-image: radial-gradient(70% 55% at 50% -20%, rgba(220, 20, 60, 0.07), transparent 70%);
   background-attachment: fixed;
   font-size: 18px;
 }
 
 .bg-panel {
-  --tw-bg-opacity: 0.72;
+  --tw-bg-opacity: 0.76;
   backdrop-filter: blur(14px);
 }
 .bg-panel2 {
-  --tw-bg-opacity: 0.68;
+  --tw-bg-opacity: 0.78;
   backdrop-filter: blur(10px);
+}
+
+[data-theme="light"] .text-white {
+  color: rgb(var(--color-foreground));
+}
+[data-theme="light"] .btn-primary {
+  color: #fff;
 }
 
 @layer components {
   .card {
     @apply rounded-2xl border border-line bg-panel;
-    box-shadow: inset 0 1px rgba(255, 255, 255, 0.025);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
   }
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-ink transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-40;
-    background: #c4d99a;
-    box-shadow: 0 6px 22px -12px rgba(196, 217, 154, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40;
+    background: #dc143c;
+    box-shadow: 0 6px 22px -12px rgba(220, 20, 60, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.22);
   }
   .btn-secondary {
     @apply inline-flex items-center justify-center gap-2 rounded-xl border border-line bg-panel2 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-muted/40 hover:bg-line disabled:cursor-not-allowed disabled:opacity-40;
@@ -62,13 +96,13 @@ body {
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #34453d;
+  background: #52525b;
   border-radius: 8px;
 }
 
 /* Legacy alias (admin) */
 .card-grad {
-  background: rgba(16, 24, 22, 0.72);
+  background: rgba(var(--color-panel), 0.76);
   backdrop-filter: blur(14px);
 }
 
@@ -114,8 +148,8 @@ body {
   80% { transform: scale(0.97, 1.06) translateY(-0.5px); }
 }
 @keyframes flame-glow {
-  0%, 100% { filter: drop-shadow(0 0 5px rgba(196, 217, 154, 0.16)); }
-  50% { filter: drop-shadow(0 0 10px rgba(196, 217, 154, 0.28)); }
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(220, 20, 60, 0.16)); }
+  50% { filter: drop-shadow(0 0 10px rgba(220, 20, 60, 0.3)); }
 }
 
 /* Rising embers (hero, success screens). */
@@ -169,13 +203,14 @@ body {
 }
 .hover-lift:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 36px -24px rgba(196, 217, 154, 0.3);
+  box-shadow: 0 16px 36px -24px rgba(220, 20, 60, 0.3);
 }
 
 /* A restrained highlight on the primary action. */
 .btn-primary {
   position: relative;
   overflow: hidden;
+  color: #fff;
 }
 .btn-primary::before {
   content: "";
@@ -191,7 +226,7 @@ body {
 
 /* Animated gradient text (headline). */
 .text-fire {
-  color: #c4d99a;
+  color: #dc143c;
 }
 @keyframes fire-text {
   to { background-position: 300% 0; }
@@ -232,7 +267,7 @@ body {
   z-index: -1;
   opacity: 0;
   transition: opacity 0.25s ease;
-  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(196, 217, 154, 0.08), transparent 70%);
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(220, 20, 60, 0.08), transparent 70%);
 }
 .spotlight:hover::after {
   opacity: 1;
@@ -241,7 +276,7 @@ body {
 /* A quiet accent ring for the leading market card. */
 .fire-ring {
   position: relative;
-  border-color: rgba(196, 217, 154, 0.5);
+  border-color: rgba(220, 20, 60, 0.5);
 }
 .fire-ring::before {
   content: none;
@@ -249,7 +284,8 @@ body {
 
 /* Sidebar CTA. */
 .bg-fire {
-  background: #c4d99a;
+  background: #dc143c;
+  color: #fff;
 }
 
 /* Floating hero flame. */
@@ -360,7 +396,7 @@ body {
 .mc-flash-up { animation: mc-flash-up 0.7s ease-out; }
 .mc-flash-down { animation: mc-flash-down 0.7s ease-out; }
 @keyframes mc-flash-up {
-  0% { color: #c4d99a; text-shadow: 0 0 18px rgba(196, 217, 154, 0.3); transform: scale(1.06); }
+  0% { color: #dc143c; text-shadow: 0 0 18px rgba(220, 20, 60, 0.3); transform: scale(1.06); }
   100% { color: inherit; text-shadow: none; transform: none; }
 }
 @keyframes mc-flash-down {

@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { Wordmark } from "./Logo";
 import { ConnectButton } from "./WalletUI";
+import { ThemeToggle } from "./ThemeToggle";
 import { IconBook, IconHome, IconPlus, IconSearch, IconX_Social } from "./Icons";
 
 const LINKS = [
@@ -87,6 +88,7 @@ export function Topbar() {
           <SearchBox />
         </Suspense>
         <div className="ml-auto flex items-center gap-2">
+          <ThemeToggle />
           <span className="hidden items-center gap-2 rounded-full border border-line bg-panel px-3 py-2 text-[11px] font-medium text-muted sm:inline-flex">
             <span className="live-dot h-1.5 w-1.5 rounded-full bg-up" />
             Mainnet

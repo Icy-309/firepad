@@ -34,7 +34,7 @@ export const CORE_PIXELS = [
   "................",
   "................",
 ];
-const PIXEL_COLORS: Record<string, string> = { "1": "#c4d99a", "2": "#d9bd82" };
+const PIXEL_COLORS: Record<string, string> = { "1": "#dc143c", "2": "#ff7189" };
 
 export function Logo({ size = 32, className = "" }: { size?: number; className?: string }) {
   return (

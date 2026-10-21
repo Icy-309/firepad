@@ -9,16 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#0b100f",
-        panel: "#101816",
-        panel2: "#17211e",
-        line: "#283630",
-        brand: "#c4d99a",
-        brand2: "#91a975",
-        sol: "#d9bd82",
-        up: "#91c99d",
-        down: "#e28a82",
-        muted: "#9ba9a2",
+        ink: "rgb(var(--color-ink) / <alpha-value>)",
+        panel: "rgb(var(--color-panel) / <alpha-value>)",
+        panel2: "rgb(var(--color-panel2) / <alpha-value>)",
+        line: "rgb(var(--color-line) / <alpha-value>)",
+        brand: "rgb(var(--color-brand) / <alpha-value>)",
+        brand2: "rgb(var(--color-brand2) / <alpha-value>)",
+        sol: "rgb(var(--color-sol) / <alpha-value>)",
+        up: "rgb(var(--color-up) / <alpha-value>)",
+        down: "rgb(var(--color-down) / <alpha-value>)",
+        muted: "rgb(var(--color-muted) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["VT323", "ui-monospace", "monospace"],
@@ -27,7 +27,7 @@ const config: Config = {
         pixel: ["Press Start 2P", "ui-monospace", "monospace"],
       },
       boxShadow: {
-        glow: "0 0 0 1px rgba(196,217,154,0.18), 0 8px 40px -12px rgba(196,217,154,0.12)",
+        glow: "0 0 0 1px rgba(220,20,60,0.18), 0 8px 40px -12px rgba(220,20,60,0.12)",
         pop: "0 24px 64px -16px rgba(0,0,0,0.7)",
       },
       keyframes: {

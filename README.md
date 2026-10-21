@@ -28,11 +28,11 @@ Use GitHub for the source repository and deploy the app to a persistent Node.js 
 single VPS. GitHub Pages serves static files only and cannot run this app's Next.js API routes,
 wallet transaction preparation, or JSON-backed stores.
 
-Render Free can host a preview, but it is not a VPS and is not suitable for live mainnet use: free
-services can sleep, and their filesystem is ephemeral. A restart or redeploy can lose uploaded
-images, vanity keys, coin records, and payout state. For production, use a continuously available
-service with persistent storage; a serverless or multi-instance deployment also needs a database
-and object storage first.
+Render Free can host the app temporarily while you test it, but it is not a VPS and its filesystem
+is ephemeral. A restart or redeploy can lose uploaded images, vanity keys, coin records, and payout
+state, so do not rely on it for durable mainnet operations. When moving to a VPS, back up and migrate
+the `data/` directory; a serverless or multi-instance deployment also needs a database and object
+storage first.
 
 For a persistent single-server deployment, configure the production environment from `.env.example`,
 set `NEXT_PUBLIC_SITE_URL` to the HTTPS domain, build the app, and run `npm start` behind a
